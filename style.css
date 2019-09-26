@@ -1,0 +1,13 @@
+div {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: antiquewhite;
+    width: 50%;
+    height: 75%;
+}
