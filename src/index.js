@@ -108,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function () {
             body.style.backgroundColor = "#121212";
             body.style.color = "white";
             triangles.forEach(function (tri) {
-                tri.style.borderRight = "20px solid white";
-                tri.style.borderBottom = "20px solid white";
+                tri.classList.remove("black-border");
+                tri.classList.add("white-border");
             });
         }
         else {
@@ -117,8 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
             body.style.backgroundColor = "azure";
             body.style.color = "black";
             triangles.forEach(function (tri) {
-                tri.style.borderRight = "20px solid black";
-                tri.style.borderBottom = "20px solid black";
+                tri.classList.add("black-border");
+                tri.classList.remove("white-border");
             });
         }
     };

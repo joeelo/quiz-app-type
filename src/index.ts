@@ -158,16 +158,16 @@ document.addEventListener("DOMContentLoaded", () => {
             body.style.backgroundColor = "#121212";
             body.style.color = "white";
             triangles.forEach(tri => {
-                tri.style.borderRight = "20px solid white"; 
-                tri.style.borderBottom = "20px solid white";
+                tri.classList.remove("black-border");
+                tri.classList.add("white-border")
             });
         } else {
             toggleSpan.innerText = "light"
             body.style.backgroundColor = "azure";
             body.style.color = "black";
             triangles.forEach(tri => {
-                tri.style.borderRight = "20px solid black"; 
-                tri.style.borderBottom = "20px solid black";
+                tri.classList.add("black-border")
+                tri.classList.remove("white-border");
             });
         }
     }
