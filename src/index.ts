@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeButton: HTMLButtonElement = document.querySelector(".toggle-theme");
     const toggleSpan: HTMLSpanElement = document.querySelector("span");
     const body: HTMLBodyElement = document.querySelector("body");
+    const arrow: HTMLImageElement = document.querySelector(".arrow");
+    const triangles: any = document.querySelectorAll(".triangle");
     let questions;
     let selectedAnswer: string;
     let points: number = 0;
@@ -124,15 +126,27 @@ document.addEventListener("DOMContentLoaded", () => {
         `
     }
 
+    const scrollOnClick = ():void => {
+        console.log("working");
+    }
+
     const toggleTheme = ():void => {
         if (toggleSpan.innerText === "light") {
             toggleSpan.innerText = "dark";
             body.style.backgroundColor = "#121212";
             body.style.color = "white";
+            triangles.forEach(tri => {
+                tri.style.borderRight = "20px solid white"; 
+                tri.style.borderBottom = "20px solid white";
+            });
         } else {
             toggleSpan.innerText = "light"
             body.style.backgroundColor = "white";
             body.style.color = "black";
+            triangles.forEach(tri => {
+                tri.style.borderRight = "20px solid black"; 
+                tri.style.borderBottom = "20px solid black";
+            });
         }
     }
 
@@ -141,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     quizContainer.addEventListener("click", submitAnswer);
     quizContainer.addEventListener("click", generateNextQuestion);
     themeButton.addEventListener("click", toggleTheme);
+    arrow.addEventListener("click", scrollOnClick);
 })
 
 const HTTPquestions = [

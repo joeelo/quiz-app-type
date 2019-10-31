@@ -20,6 +20,7 @@ body, * {
     width: 100vw;
     height: 100vh;
     padding: 0 10vw;
+    text-align: center;
 }
 
 .page-container {
@@ -93,9 +94,28 @@ body, * {
 }
 
 .toggle-theme {
+    position: fixed;
+    top: 20px; 
+    right: 20px;
+}
+
+.arrow {
     position: absolute;
-    top: 0; 
-    left: 0;
+    top: 75vh;
+    left: 50;
+}
+
+.triangle {
+    height: 80px;
+    width: 80px;
+    transform: rotate(45deg);
+    border-right: 20px solid black;
+    border-bottom: 20px solid black;
+}
+
+.lower-triangle {
+    position: relative;
+    bottom: 40px;
 }
 
 button {
