@@ -4,6 +4,10 @@ body, * {
     box-sizing: border-box;
 }
 
+body {
+    background-color: azure;
+}
+
 .whole-container {
     display: flex;
     min-height: 200vh;
@@ -12,6 +16,7 @@ body, * {
 
 .explanation-page {
     display: flex;
+    flex-direction: column;
     font-size: 2em;
     font-family: Helvetica, sans-serif;
     font-weight: 400;
@@ -116,6 +121,10 @@ body, * {
 .lower-triangle {
     position: relative;
     bottom: 40px;
+}
+
+h1 {
+    margin-bottom: 20px;
 }
 
 button {

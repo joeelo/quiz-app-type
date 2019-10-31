@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let points: number = 0;
     let questionIndex: number = 0;
 
-
     const chooseAnswer = (event):void => {
         if (event.target.classList.contains("answer")) {
             const div = event.target as HTMLElement;
@@ -28,6 +27,26 @@ document.addEventListener("DOMContentLoaded", () => {
         div.classList.add("focused");
     }
 
+    const pickCatgeory = (event): void => {
+        if (event.target.classList.contains("option")) {
+            const category: string = event.target.textContent;
+            console.log("why am i null?");
+            switch(category) {
+                case "HTTP 2":
+                    questions = HTTPquestions; 
+                    break;
+                case "React": 
+                    questions = ReactQuestions;
+                    break;
+                case "JavaScript": 
+                    questions = JavascriptQuestions;
+                    break;
+            }
+            console.log(HTTPquestions);
+            populateQuiz();
+        }
+    }
+
     const checkAnswer = ():void => {
         console.log(selectedAnswer);
         if (selectedAnswer === questions[questionIndex].correctAnswer) {
@@ -40,25 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedAnswer = "";
     }
 
-    const pickCatgeory = (event): void => {
-        const category: string = event.target.textContent;
-        switch(category) {
-            case "HTTP 2":
-                questions = HTTPquestions; 
-                break;
-            case "React": 
-                questions = ReactQuestions;
-                break;
-            case "JavaScript": 
-                questions = JavascriptQuestions;
-                break;
-        }
-        console.log(HTTPquestions);
-        populateQuiz();
-    }
-
     const populateQuiz = ():void => {
-        quizCategories.remove();
+        const dynamicQuizCategories: HTMLDivElement = document.querySelector(".quiz-categories");
+        dynamicQuizCategories.remove();
         quizContainer.style.display = "flex";
         quizContainer.innerHTML += `
             <div class="question-header"> ${questions[questionIndex].question}</div>
@@ -93,9 +96,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div>
                     <h1> You've got ${ points / 10 } out of ${questions.length} correct </h1>
                 </div>
+                <button class="new-quiz-button"> pick new quiz </button>
             `
-        console.log("quiz completed");
         return;
+        }
+    }
+
+    const newQuiz = (event):void => {
+        if (event.target.classList.contains("new-quiz-button")) {
+            quizContainer.innerHTML = `
+                <div class="quiz-categories">
+                    <div class="option option-1">HTTP 2</div>
+                    <div class="option option-2">React</div>
+                    <div class="option option-3">JavaScript</div>
+                </div>
+            `
+            points = 0;
+            questionIndex = 0;
+            selectedAnswer = "";
         }
     }
 
@@ -127,7 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const scrollOnClick = ():void => {
-        console.log("working");
+        const pageHeight = window.innerHeight;
+        window.scroll({
+            behavior: "smooth", 
+            top: pageHeight
+        })
     }
 
     const toggleTheme = ():void => {
@@ -141,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         } else {
             toggleSpan.innerText = "light"
-            body.style.backgroundColor = "white";
+            body.style.backgroundColor = "azure";
             body.style.color = "black";
             triangles.forEach(tri => {
                 tri.style.borderRight = "20px solid black"; 
@@ -150,10 +172,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    quizCategories.addEventListener("click", pickCatgeory);
+    pageContainer.addEventListener("click", pickCatgeory);
     quizContainer.addEventListener("click", chooseAnswer);
     quizContainer.addEventListener("click", submitAnswer);
     quizContainer.addEventListener("click", generateNextQuestion);
+    quizContainer.addEventListener("click", newQuiz);
     themeButton.addEventListener("click", toggleTheme);
     arrow.addEventListener("click", scrollOnClick);
 })

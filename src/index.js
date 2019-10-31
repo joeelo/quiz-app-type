@@ -24,6 +24,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         div.classList.add("focused");
     };
+    var pickCatgeory = function (event) {
+        if (event.target.classList.contains("option")) {
+            var category = event.target.textContent;
+            console.log("why am i null?");
+            switch (category) {
+                case "HTTP 2":
+                    questions = HTTPquestions;
+                    break;
+                case "React":
+                    questions = ReactQuestions;
+                    break;
+                case "JavaScript":
+                    questions = JavascriptQuestions;
+                    break;
+            }
+            console.log(HTTPquestions);
+            populateQuiz();
+        }
+    };
     var checkAnswer = function () {
         console.log(selectedAnswer);
         if (selectedAnswer === questions[questionIndex].correctAnswer) {
@@ -36,24 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
         questionIndex++;
         selectedAnswer = "";
     };
-    var pickCatgeory = function (event) {
-        var category = event.target.textContent;
-        switch (category) {
-            case "HTTP 2":
-                questions = HTTPquestions;
-                break;
-            case "React":
-                questions = ReactQuestions;
-                break;
-            case "JavaScript":
-                questions = JavascriptQuestions;
-                break;
-        }
-        console.log(HTTPquestions);
-        populateQuiz();
-    };
     var populateQuiz = function () {
-        quizCategories.remove();
+        var dynamicQuizCategories = document.querySelector(".quiz-categories");
+        dynamicQuizCategories.remove();
         quizContainer.style.display = "flex";
         quizContainer.innerHTML += "\n            <div class=\"question-header\"> " + questions[questionIndex].question + "</div>\n            <div class=\"answer\">" + questions[questionIndex].a + "</div>\n            <div class=\"answer\">" + questions[questionIndex].b + "</div>\n            <div class=\"answer\">" + questions[questionIndex].c + "</div>\n            <div class=\"answer\">" + questions[questionIndex].d + "</div>\n            <button class=\"submit-button\"> submit </button>\n        ";
     };
@@ -67,9 +71,16 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     var determineGameFinish = function () {
         if (questionIndex === questions.length) {
-            quizContainer.innerHTML = "\n                <div>\n                    <h1> You've got " + points / 10 + " out of " + questions.length + " correct </h1>\n                </div>\n            ";
-            console.log("quiz completed");
+            quizContainer.innerHTML = "\n                <div>\n                    <h1> You've got " + points / 10 + " out of " + questions.length + " correct </h1>\n                </div>\n                <button class=\"new-quiz-button\"> pick new quiz </button>\n            ";
             return;
+        }
+    };
+    var newQuiz = function (event) {
+        if (event.target.classList.contains("new-quiz-button")) {
+            quizContainer.innerHTML = "\n                <div class=\"quiz-categories\">\n                    <div class=\"option option-1\">HTTP 2</div>\n                    <div class=\"option option-2\">React</div>\n                    <div class=\"option option-3\">JavaScript</div>\n                </div>\n            ";
+            points = 0;
+            questionIndex = 0;
+            selectedAnswer = "";
         }
     };
     var generateNextQuestion = function (event) {
@@ -85,7 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
         quizContainer.innerHTML = "\n            <div> \n                <h1> That's not right :( </h1> \n                <h2> The correct answer is actually " + questions[questionIndex].correctAnswer + " </h2>\n                <button class=\"next-question-button\"> Next question </button>\n            </div>\n        ";
     };
     var scrollOnClick = function () {
-        console.log("working");
+        var pageHeight = window.innerHeight;
+        window.scroll({
+            behavior: "smooth",
+            top: pageHeight
+        });
     };
     var toggleTheme = function () {
         if (toggleSpan.innerText === "light") {
@@ -99,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         else {
             toggleSpan.innerText = "light";
-            body.style.backgroundColor = "white";
+            body.style.backgroundColor = "azure";
             body.style.color = "black";
             triangles.forEach(function (tri) {
                 tri.style.borderRight = "20px solid black";
@@ -107,10 +122,11 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     };
-    quizCategories.addEventListener("click", pickCatgeory);
+    pageContainer.addEventListener("click", pickCatgeory);
     quizContainer.addEventListener("click", chooseAnswer);
     quizContainer.addEventListener("click", submitAnswer);
     quizContainer.addEventListener("click", generateNextQuestion);
+    quizContainer.addEventListener("click", newQuiz);
     themeButton.addEventListener("click", toggleTheme);
     arrow.addEventListener("click", scrollOnClick);
 });
