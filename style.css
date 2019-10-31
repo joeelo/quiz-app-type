@@ -4,6 +4,24 @@ body, * {
     box-sizing: border-box;
 }
 
+.whole-container {
+    display: flex;
+    min-height: 200vh;
+    flex-direction: column;
+}
+
+.explanation-page {
+    display: flex;
+    font-size: 2em;
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 0 10vw;
+}
+
 .page-container {
     width: 100vw;
     height: 100vh;
@@ -57,7 +75,7 @@ body, * {
     background-color: green;
 }
 
-.option-1, .option-2 {
+.option {
     border: 5px solid salmon;
     transition: 1s all ease;
 }
@@ -70,15 +88,28 @@ body, * {
     background-color: teal;
 }
 
+.option-3:hover {
+    background-color: rgb(0, 128, 100);
+}
+
 .toggle-theme {
     position: absolute;
     top: 0; 
     left: 0;
 }
 
+button {
+    padding: 5px 10px;
+    border: 2px solid teal;
+    transition: .1s ease all;
+}
+
+button:hover {
+    box-shadow: 2px 2px 2px grey;
+}
+
 @media(max-width: 760px) {
     .quiz-container {
-        background-color: antiquewhite;
         width: 100vw;
         height: 75vw;
     }
@@ -89,5 +120,16 @@ body, * {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .whole-container {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    section {
+        font-size: 18px;
+        word-break: break-word;
     }
 }

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var quizContainer = document.querySelector(".quiz-container");
     var themeButton = document.querySelector(".toggle-theme");
     var toggleSpan = document.querySelector("span");
+    var body = document.querySelector("body");
     var questions;
     var selectedAnswer;
     var points = 0;
@@ -42,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
             case "React":
                 questions = ReactQuestions;
                 break;
+            case "JavaScript":
+                questions = JavascriptQuestions;
+                break;
         }
         console.log(HTTPquestions);
         populateQuiz();
@@ -59,33 +63,35 @@ document.addEventListener("DOMContentLoaded", function () {
             checkAnswer();
         }
     };
+    var determineGameFinish = function () {
+        if (questionIndex === questions.length) {
+            quizContainer.innerHTML = "\n                <div>\n                    <h1> You've got " + points / 10 + " out of " + questions.length + " correct </h1>\n                </div>\n            ";
+            console.log("quiz completed");
+            return;
+        }
+    };
     var generateNextQuestion = function (event) {
+        determineGameFinish();
         if (event.target.classList.contains("next-question-button")) {
             nextQuestion();
         }
     };
     var showCorrectPrompt = function () {
-        if (questionIndex !== questions.length - 1) {
-            quizContainer.innerHTML = "\n                <div> \n                    <h1> You are correct!</h1> \n                    <button class=\"next-question-button\"> Next question </button>\n                </div>\n            ";
-        }
-        else {
-            quizContainer.innerHTML = "\n                <h1>" + points + "</h1>\n            ";
-        }
+        quizContainer.innerHTML = "\n            <div> \n                <h1> You are correct!</h1> \n                <button class=\"next-question-button\"> Next question </button>\n            </div>\n        ";
     };
     var showWrongPrompt = function () {
-        console.log(selectedAnswer);
         quizContainer.innerHTML = "\n            <div> \n                <h1> That's not right :( </h1> \n                <h2> The correct answer is actually " + questions[questionIndex].correctAnswer + " </h2>\n                <button class=\"next-question-button\"> Next question </button>\n            </div>\n        ";
     };
     var toggleTheme = function () {
         if (toggleSpan.innerText === "light") {
             toggleSpan.innerText = "dark";
-            pageContainer.style.backgroundColor = "#121212";
-            pageContainer.style.color = "white";
+            body.style.backgroundColor = "#121212";
+            body.style.color = "white";
         }
         else {
             toggleSpan.innerText = "light";
-            pageContainer.style.backgroundColor = "white";
-            pageContainer.style.color = "black";
+            body.style.backgroundColor = "white";
+            body.style.color = "black";
         }
     };
     quizCategories.addEventListener("click", pickCatgeory);
@@ -126,5 +132,22 @@ var ReactQuestions = [
         c: "To work with lifecycle methods",
         d: "The root is just HTML",
         correctAnswer: "To create a DOM tree with JSX"
+    }
+];
+var JavascriptQuestions = [
+    {
+        question: "What cannot be hoisted",
+        a: "function expressions",
+        b: "function declarations",
+        c: "arrow functions",
+        d: "all functions can be hoisted",
+        correctAnswer: "function expressions"
+    }, {
+        question: "What is the point of Babel?",
+        a: "To compile JavaScript to Java",
+        b: "To compile JavaScript to binary",
+        c: "To compile JavaScript to an older version so the browser can read it",
+        d: "Babel has nothing to do with JavaScript",
+        correctAnswer: "To compile JavaScript to an older version so the browser can read it"
     }
 ];

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const quizContainer: HTMLDivElement = document.querySelector(".quiz-container");
     const themeButton: HTMLButtonElement = document.querySelector(".toggle-theme");
     const toggleSpan: HTMLSpanElement = document.querySelector("span");
+    const body: HTMLBodyElement = document.querySelector("body");
     let questions;
     let selectedAnswer: string;
     let points: number = 0;
@@ -46,6 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
             case "React": 
                 questions = ReactQuestions;
                 break;
+            case "JavaScript": 
+                questions = JavascriptQuestions;
+                break;
         }
         console.log(HTTPquestions);
         populateQuiz();
@@ -81,30 +85,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    const determineGameFinish = ():void => {
+        if (questionIndex === questions.length) {
+            quizContainer.innerHTML = `
+                <div>
+                    <h1> You've got ${ points / 10 } out of ${questions.length} correct </h1>
+                </div>
+            `
+        console.log("quiz completed");
+        return;
+        }
+    }
+
     const generateNextQuestion = (event):void => {
+        determineGameFinish();
         if (event.target.classList.contains("next-question-button")) {
             nextQuestion();
         }
     }
 
     const showCorrectPrompt = ():void => {
-        if (questionIndex !== questions.length - 1) {
-            quizContainer.innerHTML = `
-                <div> 
-                    <h1> You are correct!</h1> 
-                    <button class="next-question-button"> Next question </button>
-                </div>
-            `
-        } else {
-            quizContainer.innerHTML = `
-                <h1>${points}</h1>
-            `
-        }
-
+        quizContainer.innerHTML = `
+            <div> 
+                <h1> You are correct!</h1> 
+                <button class="next-question-button"> Next question </button>
+            </div>
+        `
     }
-    
+
+
     const showWrongPrompt = ():void => {
-        console.log(selectedAnswer);
         quizContainer.innerHTML = `
             <div> 
                 <h1> That's not right :( </h1> 
@@ -117,12 +127,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleTheme = ():void => {
         if (toggleSpan.innerText === "light") {
             toggleSpan.innerText = "dark";
-            pageContainer.style.backgroundColor = "#121212";
-            pageContainer.style.color = "white";
+            body.style.backgroundColor = "#121212";
+            body.style.color = "white";
         } else {
             toggleSpan.innerText = "light"
-            pageContainer.style.backgroundColor = "white";
-            pageContainer.style.color = "black";
+            body.style.backgroundColor = "white";
+            body.style.color = "black";
         }
     }
 
@@ -166,5 +176,23 @@ const ReactQuestions = [
         c: "To work with lifecycle methods", 
         d: "The root is just HTML", 
         correctAnswer: "To create a DOM tree with JSX"
+    }
+]
+
+const JavascriptQuestions = [
+    {
+        question: "What cannot be hoisted",
+        a: "function expressions", 
+        b: "function declarations", 
+        c: "arrow functions", 
+        d: "all functions can be hoisted", 
+        correctAnswer: "function expressions"
+    }, {
+        question: "What is the point of Babel?", 
+        a: "To compile JavaScript to Java", 
+        b: "To compile JavaScript to binary", 
+        c: "To compile JavaScript to an older version so the browser can read it", 
+        d: "Babel has nothing to do with JavaScript", 
+        correctAnswer: "To compile JavaScript to an older version so the browser can read it"
     }
 ]
