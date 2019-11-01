@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const pageContainer: HTMLDivElement = document.querySelector(".page-container");
-    const quizCategories: HTMLDivElement = document.querySelector(".quiz-categories");
+    const quizCategories: any = document.querySelectorAll(".option")
     const quizContainer: HTMLDivElement = document.querySelector(".quiz-container");
     const themeButton: HTMLButtonElement = document.querySelector(".toggle-theme");
     const toggleSpan: HTMLSpanElement = document.querySelector("span");
@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pickCatgeory = (event): void => {
         if (event.target.classList.contains("option")) {
+            console.log(quizCategories)
             const category: string = event.target.textContent;
+            category.trim();
             console.log("why am i null?");
             switch(category) {
                 case "HTTP 2":
@@ -106,9 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.target.classList.contains("new-quiz-button")) {
             quizContainer.innerHTML = `
                 <div class="quiz-categories">
-                    <div class="option option-1">HTTP 2</div>
-                    <div class="option option-2">React</div>
-                    <div class="option option-3">JavaScript</div>
+                    <div class="option">HTTP 2</div>
+                    <div class="option">React</div>
+                    <div class="option">JavaScript</div>
+                    <div class="option">TypeScript</div>
+                    <div class="option">Docker</div>
+                    <div class="option">GraphQL</div>
+                    <div class="option">Algorithms</div>
+                    <div class="option">HTML5 Canvas</div>
+                    <div class="option">Node</div>
                 </div>
             `
             points = 0;

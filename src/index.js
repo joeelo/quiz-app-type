@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     var pageContainer = document.querySelector(".page-container");
-    var quizCategories = document.querySelector(".quiz-categories");
+    var quizCategories = document.querySelectorAll(".option");
     var quizContainer = document.querySelector(".quiz-container");
     var themeButton = document.querySelector(".toggle-theme");
     var toggleSpan = document.querySelector("span");
@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     var pickCatgeory = function (event) {
         if (event.target.classList.contains("option")) {
+            console.log(quizCategories);
             var category = event.target.textContent;
+            category.trim();
             console.log("why am i null?");
             switch (category) {
                 case "HTTP 2":
@@ -77,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     var newQuiz = function (event) {
         if (event.target.classList.contains("new-quiz-button")) {
-            quizContainer.innerHTML = "\n                <div class=\"quiz-categories\">\n                    <div class=\"option option-1\">HTTP 2</div>\n                    <div class=\"option option-2\">React</div>\n                    <div class=\"option option-3\">JavaScript</div>\n                </div>\n            ";
+            quizContainer.innerHTML = "\n                <div class=\"quiz-categories\">\n                    <div class=\"option\">HTTP 2</div>\n                    <div class=\"option\">React</div>\n                    <div class=\"option\">JavaScript</div>\n                    <div class=\"option\">TypeScript</div>\n                    <div class=\"option\">Docker</div>\n                    <div class=\"option\">GraphQL</div>\n                    <div class=\"option\">Algorithms</div>\n                    <div class=\"option\">HTML5 Canvas</div>\n                    <div class=\"option\">Node</div>\n                </div>\n            ";
             points = 0;
             questionIndex = 0;
             selectedAnswer = "";

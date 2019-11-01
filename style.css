@@ -42,12 +42,15 @@ body {
 
 .quiz-categories {
     text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 70vw;
+    height: 70vw; 
+    grid-gap: 15px;
 }
 
 .quiz-categories .option {
-    margin: 5px 0;
-    width: 50vw;
-    height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,14 +95,14 @@ body {
     font-weight: 900;
     overflow: hidden;
     letter-spacing: 2px;
-    color: teal;
 }
 
 .option:hover {
-    background-color: teal;
+    background-color: #60A4CC;
     color: white;
-    box-shadow: 0 0 10px teal, 0 0 40px teal, 0 0 80px teal; 
+    box-shadow: 0 0 10px #417EA1, 0 0 40px #417EA1, 0 0 80px #417EA1, 0 0 120px rgb(47, 86, 109), inset 0 0 5px rgb(39, 63, 82), inset 0 0 30px steelblue; 
     transition-delay: .25s;
+    cursor: pointer;
 }
 
 .toggle-theme {
@@ -168,12 +171,21 @@ button:hover {
         height: 75vw;
     }
 
+    .quiz-categories {
+        display: flex;
+        flex-direction: column;
+        height: 60vh;
+        align-items: center;
+    }
+
     .quiz-categories div {
-        width: 100vw;
-        height: 20vh;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 60vw;
+        margin: 5px 0; 
+        font-size: 14px;
+        border: 2px solid salmon;
     }
 
     .whole-container {
