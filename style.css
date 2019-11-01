@@ -27,7 +27,7 @@ body {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    padding: 0 10vw;
+    padding: 0 15vw;
     text-align: center;
 }
 
@@ -44,9 +44,9 @@ body {
     text-align: center;
 }
 
-.quiz-categories div {
+.quiz-categories .option {
     margin: 5px 0;
-    width: 80vw;
+    width: 50vw;
     height: 20vh;
     display: flex;
     justify-content: center;
@@ -86,22 +86,20 @@ body {
 
 .option {
     border: 5px solid salmon;
-    transition: 1s all ease;
+    transition: 0.2s all ease;
     font-family: "Libre Baskerville", sans-serif;
     font-size: 1.5em;
     font-weight: 900;
+    overflow: hidden;
+    letter-spacing: 2px;
+    color: teal;
 }
 
-.option-1:hover {
-    background-color: skyblue;
-}
-
-.option-2:hover {
+.option:hover {
     background-color: teal;
-}
-
-.option-3:hover {
-    background-color: rgb(0, 128, 100);
+    color: white;
+    box-shadow: 0 0 10px teal, 0 0 40px teal, 0 0 80px teal; 
+    transition-delay: .25s;
 }
 
 .toggle-theme {
@@ -210,5 +208,15 @@ button:hover {
     section {
         font-size: 18px;
         word-break: break-word;
+    }
+}
+
+@keyframes radialGradient {
+    from {
+        background: inherit;   
+    }
+    to {
+        background: rgb(34,193,195);
+        background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
     }
 }
