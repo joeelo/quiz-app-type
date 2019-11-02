@@ -1,3 +1,5 @@
+import questions from "./questions";
+
 document.addEventListener("DOMContentLoaded", () => {
     const pageContainer: HTMLDivElement = document.querySelector(".page-container");
     const quizCategories: any = document.querySelectorAll(".option")
@@ -13,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let questionIndex: number = 0;
 
     const chooseAnswer = (event):void => {
+        console.log("questions", questions);
         if (event.target.classList.contains("answer")) {
             const div = event.target as HTMLElement;
             addFocus(div);
@@ -29,10 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pickCatgeory = (event): void => {
         if (event.target.classList.contains("option")) {
-            console.log(quizCategories)
             const category: string = event.target.textContent;
             category.trim();
-            console.log("why am i null?");
             switch(category) {
                 case "HTTP 2":
                     questions = HTTPquestions; 
@@ -44,13 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     questions = JavascriptQuestions;
                     break;
             }
-            console.log(HTTPquestions);
             populateQuiz();
         }
     }
 
     const checkAnswer = ():void => {
-        console.log(selectedAnswer);
         if (selectedAnswer === questions[questionIndex].correctAnswer) {
             points += 10;
             showCorrectPrompt();
@@ -75,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `
     }
 
-    const nextQuestion = () => {
+    const nextQuestion = ():void => {
         quizContainer.innerHTML = `
             <div class="question-header"> ${questions[questionIndex].question}</div>
             <div class="answer">${questions[questionIndex].a}</div>
@@ -97,8 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
             quizContainer.innerHTML = `
                 <div>
                     <h1> You've got ${ points / 10 } out of ${questions.length} correct </h1>
+                    <button class="new-quiz-button"> pick new quiz </button>
                 </div>
-                <button class="new-quiz-button"> pick new quiz </button>
             `
         return;
         }
@@ -161,10 +160,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const toggleTheme = ():void => {
+        const buttons: any = document.querySelectorAll("button");
         if (toggleSpan.innerText === "light") {
             toggleSpan.innerText = "dark";
             body.style.backgroundColor = "#121212";
             body.style.color = "white";
+            buttons.forEach(button => button.classList.add("dark"));
             triangles.forEach(tri => {
                 tri.classList.remove("black-border");
                 tri.classList.add("white-border")
@@ -173,6 +174,8 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleSpan.innerText = "light"
             body.style.backgroundColor = "azure";
             body.style.color = "black";
+            toggleSpan.classList.remove("dark");
+            buttons.forEach(button => button.classList.remove("dark"));
             triangles.forEach(tri => {
                 tri.classList.add("black-border")
                 tri.classList.remove("white-border");
@@ -241,4 +244,8 @@ const JavascriptQuestions = [
         d: "Babel has nothing to do with JavaScript", 
         correctAnswer: "To compile JavaScript to an older version so the browser can read it"
     }
+]
+
+const TypeScriptQuestions = [
+    
 ]
