@@ -7,12 +7,12 @@
 * <a href="#usage"> Usage </a> 
 
 
-<a id="purpose">### Purpose</a>
+### <a id="purpose"> Purpose</a>
 
 
 
-<a id="installation"> ### Installation </a>
+### <a id="installation"> Installation </a>
 
 
 
-<a id="usage"> ### Usage </a>
+### <a id="usage"> Usage </a>
