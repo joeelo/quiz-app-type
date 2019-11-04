@@ -4,6 +4,7 @@
   "description": "javascript and typescript quiz application",
   "main": "index.js",
   "scripts": {
+    "start": "node ./js/main.js",
     "build": "webpack --config webpack.config.js --mode development",
     "test": "npm test "
   },
