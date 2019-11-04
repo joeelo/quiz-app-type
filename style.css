@@ -205,6 +205,10 @@ button:hover {
 
 @media(max-width: 760px) {
 
+    body {
+        font-size: 14px
+    }
+
     .page-container {
         display: flex;
         align-items: center;
@@ -213,7 +217,7 @@ button:hover {
     }
 
     .quiz-container div {
-        height: 15vh;
+        padding: 5px;
     }
 
     .quiz-categories {
