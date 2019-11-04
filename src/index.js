@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+var questions_1 = require("./questions");
 document.addEventListener("DOMContentLoaded", function () {
     var pageContainer = document.querySelector(".page-container");
     var quizCategories = document.querySelectorAll(".option");
@@ -32,13 +33,31 @@ document.addEventListener("DOMContentLoaded", function () {
             category.trim();
             switch (category) {
                 case "HTTP 2":
-                    questions = HTTPquestions;
+                    questions = questions_1.QuizQuestions.HTTPquestions;
                     break;
                 case "React":
-                    questions = ReactQuestions;
+                    questions = questions_1.QuizQuestions.ReactQuestions;
                     break;
                 case "JavaScript":
-                    questions = JavascriptQuestions;
+                    questions = questions_1.QuizQuestions.JavascriptQuestions;
+                    break;
+                case "TypeScript":
+                    questions = questions_1.QuizQuestions.TypeScriptQuestions;
+                    break;
+                case "Docker & Kubernetes":
+                    questions = questions_1.QuizQuestions.DKQuestions;
+                    break;
+                case "GraphQL":
+                    questions = questions_1.QuizQuestions.GraphQLQuestions;
+                    break;
+                case "Algorithms":
+                    questions = questions_1.QuizQuestions.AlgorithmQuestions;
+                    break;
+                case "HTML5 Canvas":
+                    questions = questions_1.QuizQuestions.HTML5CanvasQuestions;
+                    break;
+                case "Node":
+                    questions = questions_1.QuizQuestions.NodeQuestions;
                     break;
             }
             populateQuiz();
@@ -134,55 +153,3 @@ document.addEventListener("DOMContentLoaded", function () {
     themeButton.addEventListener("click", toggleTheme);
     arrow.addEventListener("click", scrollOnClick);
 });
-var HTTPquestions = [
-    {
-        question: "what is http2 good for?",
-        a: "reduced latency",
-        b: "same as http1",
-        c: "Data framing differentiation",
-        d: "other things",
-        correctAnswer: "reduced latency"
-    }, {
-        question: "what does HTTP stand for?",
-        a: "No meaning",
-        b: "Hyper Text Transaction Protocol",
-        c: "Hyper Text Transfer Protocol",
-        d: "Hallow Transfer Text Protocol",
-        correctAnswer: "Hyper Text Transfer Protocol"
-    }
-];
-var ReactQuestions = [
-    {
-        question: "What is a common lifecycle method?",
-        a: "ComponentDidMount",
-        b: "ComponentDoesExist",
-        c: "ComponentNeedsUpdate",
-        d: "DerivedStatesFromProps",
-        correctAnswer: "ComponentDidMount"
-    }, {
-        question: "Why does React need a Root?",
-        a: "No reason",
-        b: "To create a DOM tree with JSX",
-        c: "To work with lifecycle methods",
-        d: "The root is just HTML",
-        correctAnswer: "To create a DOM tree with JSX"
-    }
-];
-var JavascriptQuestions = [
-    {
-        question: "What cannot be hoisted",
-        a: "function expressions",
-        b: "function declarations",
-        c: "arrow functions",
-        d: "all functions can be hoisted",
-        correctAnswer: "function expressions"
-    }, {
-        question: "What is the point of Babel?",
-        a: "To compile JavaScript to Java",
-        b: "To compile JavaScript to binary",
-        c: "To compile JavaScript to an older version so the browser can read it",
-        d: "Babel has nothing to do with JavaScript",
-        correctAnswer: "To compile JavaScript to an older version so the browser can read it"
-    }
-];
-var TypeScriptQuestions = [];

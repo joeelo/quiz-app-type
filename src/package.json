@@ -13,6 +13,7 @@
     "webpack": "^4.41.2"
   },
   "devDependencies": {
+    "@types/node": "^12.12.5",
     "webpack-cli": "^3.3.10"
   }
 }
