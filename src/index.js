@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var points = 0;
     var questionIndex = 0;
     var chooseAnswer = function (event) {
-        console.log("questions", questions);
         if (event.target.classList.contains("answer")) {
             var div = event.target;
             addFocus(div);

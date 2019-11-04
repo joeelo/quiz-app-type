@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let questionIndex: number = 0;
 
     const chooseAnswer = (event):void => {
-        console.log("questions", questions);
         if (event.target.classList.contains("answer")) {
             const div = event.target as HTMLElement;
             addFocus(div);
