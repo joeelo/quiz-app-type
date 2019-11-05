@@ -116,7 +116,8 @@ body {
 
 .option:hover {
     background-color: #60A4CC;
-    border: 5px solid rgb(0, 204, 255);
+    opacity: .85;
+    border: 5px solid rgba(0, 204, 255, 0.6);
     color: white;
     box-shadow: 
         0 0 10px #417EA1, 
@@ -124,7 +125,7 @@ body {
         0 0 80px #417EA1, 
         inset 0 0 5px rgb(39, 63, 82), 
         inset 0 0 30px steelblue; 
-    transition-delay: .25s;
+    transition-delay: .1s;
     cursor: pointer;
 }
 
