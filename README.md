@@ -14,7 +14,7 @@ TypeQuiz is an app meant to help those in need of study material for upcoming in
 ### <a id="installation"> Installation </a>
 For right now TypeQuiz is strictly a frontend app, but there will soon be user fuctionality and saved scores for quizes. 
 If you don't wish to install this application, you can check out the live link at 
-- https://thirsty-visvesvaraya-0f14ba.netlify.com/ 
+- https://typequiz.netlify.com/
 
 If you do wish to pull and work on TypeQuiz yourself please feel free. The github link is 
   - https://github.com/joeelo/quiz-app-type
